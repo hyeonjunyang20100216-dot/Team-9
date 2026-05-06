@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>베네듀 땅따먹기 어드민</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="메인으로 이동">
+      <span class="brand-mark">B</span>
+      <span>
+        <strong>베네듀 땅따먹기</strong>
+        <small>Admin Console</small>
+      </span>
+    </a>
+    <nav class="top-actions">
+      <a class="ghost-link" href="index.html">게임 화면</a>
+    </nav>
+  </header>
+
+  <main class="admin-main">
+    <section id="adminLogin" class="admin-login-card">
+      <p class="eyebrow">관리자 인증</p>
+      <h1>어드민 창</h1>
+      <p class="notice muted">비밀번호 입력 후 경기 설정을 열 수 있습니다.</p>
+      <form id="adminLoginForm" autocomplete="off">
+        <label for="adminPassword">비밀번호</label>
+        <input id="adminPassword" type="password" inputmode="numeric" placeholder="비밀번호" required />
+        <button class="primary-button" type="submit">어드민 입장</button>
+      </form>
+    </section>
+
+    <section id="adminPanel" class="admin-panel hidden">
+      <div class="admin-header-card">
+        <div>
+          <p class="eyebrow">경기 설정</p>
+          <h1>두 반을 선택하고 경기를 시작하세요.</h1>
+          <p class="notice muted">작은 번호 반은 왼쪽, 큰 번호 반은 오른쪽을 사용합니다. 첫 학생이 입장하는 순간 20분 타이머가 시작됩니다.</p>
+        </div>
+        <div class="admin-status">
+          <span>상태</span>
+          <strong id="adminStatusText">대기</strong>
+        </div>
+      </div>
+
+      <section class="admin-grid">
+        <form id="matchForm" class="admin-card">
+          <h2>경기 열기</h2>
+          <label for="teamASelect">대결 반 A</label>
+          <select id="teamASelect" required>
+            <option value="1">1반</option>
+            <option value="2">2반</option>
+            <option value="3">3반</option>
+            <option value="4">4반</option>
+            <option value="5">5반</option>
+            <option value="6">6반</option>
+          </select>
+
+          <label for="teamBSelect">대결 반 B</label>
+          <select id="teamBSelect" required>
+            <option value="6">6반</option>
+            <option value="5">5반</option>
+            <option value="4">4반</option>
+            <option value="3">3반</option>
+            <option value="2">2반</option>
+            <option value="1">1반</option>
+          </select>
+
+          <button class="primary-button" type="submit">경기 시작</button>
+          <button id="forceTimerBtn" class="secondary-button" type="button">지금 타이머 시작</button>
+          <button id="endMatchBtn" class="danger-button" type="button">경기 종료</button>
+          <button id="clearMatchBtn" class="ghost-button wide" type="button">경기 초기화</button>
+        </form>
+
+        <section class="admin-card">
+          <h2>현재 경기</h2>
+          <dl class="match-info-list">
+            <div><dt>대결</dt><dd id="adminPair">없음</dd></div>
+            <div><dt>남은 시간</dt><dd id="adminTimer">-</dd></div>
+            <div><dt>왼쪽</dt><dd id="adminLeftCount">0칸</dd></div>
+            <div><dt>오른쪽</dt><dd id="adminRightCount">0칸</dd></div>
+            <div><dt>중립</dt><dd id="adminNeutralCount">400칸</dd></div>
+          </dl>
+          <div class="ratio-track admin-ratio" aria-label="관리자 점령 비율 바">
+            <div id="adminLeftBar" class="ratio-fill left"></div>
+            <div id="adminNeutralBar" class="ratio-fill neutral"></div>
+            <div id="adminRightBar" class="ratio-fill right"></div>
+          </div>
+        </section>
+
+        <section class="admin-card admin-log-card">
+          <h2>경기 로그</h2>
+          <ul id="adminLogList" class="log-list"></ul>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="js/game-data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
